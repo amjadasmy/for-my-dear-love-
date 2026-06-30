@@ -1,38 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You 💌</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>For You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #1a1a1a, #000000);
+    overflow: hidden;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 700px;
+    padding: 30px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 60px;
+    color: gold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.highlight {
+    color: gold;
+    font-weight: bold;
+}
+
+.btn {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: gold;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: #ffdf70;
+    transform: scale(1.05);
+}
+
+.heart {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: red;
+    transform: rotate(45deg);
+    animation: floatUp 6s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -5px; left: 0; }
+.heart::after { left: -5px; top: 0; }
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
 </head>
+
 <body>
 
-<div class="scene">
+<div class="container">
+    <h1>For You ❤️</h1>
 
-  <!-- Mail Box -->
-  <div class="envelope" onclick="openLetter()">
-    <div class="flap"></div>
-    <div class="body"></div>
-    <div class="letter">
-      <h2>💌 A Message for You</h2>
-      <p class="insta">Instagram: <b>Blurb.3rry</b></p>
-      <p class="msg">
-        I love you.<br><br>
-        I will never let you down in your lowest moments.<br>
-        I will stay beside you, support you, and care for you always.<br><br>
-        You are special to me in ways words cannot explain.<br><br>
-        💖 This is not just a feeling… it is a promise.
-      </p>
-    </div>
-  </div>
+    <p>
+        If I could wish for one impossible thing,  
+        it would be to become a tear in your eyes—  
+        so I could be born where your beauty begins.  
+        <br><br>
 
-  <!-- Effects -->
-  <div id="hearts"></div>
-  <div id="butterflies"></div>
-  <div id="boom"></div>
+        I promise to stand beside you when the world feels heavy,  
+        to listen when silence hurts more than words,  
+        and to stay when everything else leaves.  
+        <br><br>
 
+        You are not just someone special… you are my calm, my reason, my everything.  
+        And I will always choose you, in every lifetime.
+    </p>
+
+    <a class="btn" href="https://instagram.com/Blurb.3rry" target="_blank">
+        Visit Instagram 💫
+    </a>
 </div>
 
-<script src="script.js"></script>
+<script>
+// floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
 </body>
 </html>
