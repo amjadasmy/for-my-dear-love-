@@ -76,4 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { once: true });
     */
 
+});document.addEventListener("DOMContentLoaded", () => {
+    const music = document.getElementById("bgMusic");
+
+    // browsers block autoplay, so start on first click
+    document.body.addEventListener("click", () => {
+        music.play();
+    }, { once: true });
 });
