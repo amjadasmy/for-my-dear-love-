@@ -1,49 +1,79 @@
-function openLetter() {
-  const envelope = document.querySelector(".envelope");
-  envelope.classList.add("open");
+document.addEventListener("DOMContentLoaded", () => {
 
-  createHearts();
-  createButterflies();
-  createBoom();
-}
+    /* =========================
+       💖 FLOATING HEARTS
+    ========================== */
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
 
-/* ❤️ Hearts */
-function createHearts() {
-  for (let i = 0; i < 20; i++) {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.top = "80%";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    document.body.appendChild(heart);
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+        heart.style.opacity = Math.random();
 
-    setTimeout(() => heart.remove(), 5000);
-  }
-}
+        document.body.appendChild(heart);
 
-/* 🦋 Butterflies */
-function createButterflies() {
-  for (let i = 0; i < 10; i++) {
-    let b = document.createElement("div");
-    b.className = "butterfly";
-    b.innerHTML = "🦋";
-    b.style.left = Math.random() * window.innerWidth + "px";
-    b.style.top = Math.random() * window.innerHeight + "px";
-    document.body.appendChild(b);
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
 
-    setTimeout(() => b.remove(), 6000);
-  }
-}
+    setInterval(createHeart, 250);
 
-/* 💥 Boom effect */
-function createBoom() {
-  let boom = document.createElement("div");
-  boom.className = "boom";
-  boom.innerHTML = "💥";
-  boom.style.left = "50%";
-  boom.style.top = "40%";
-  document.body.appendChild(boom);
 
-  setTimeout(() => boom.remove(), 1000);
-}
+    /* =========================
+       ✨ TYPEWRITER EFFECT
+    ========================== */
+    const textElement = document.querySelector("p");
+    if (textElement) {
+        const fullText = textElement.innerText;
+        textElement.innerText = "";
+
+        let i = 0;
+
+        function typeWriter() {
+            if (i < fullText.length) {
+                textElement.innerHTML += fullText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 25);
+            }
+        }
+
+        typeWriter();
+    }
+
+
+    /* =========================
+       💫 BUTTON EFFECT
+    ========================== */
+    const btn = document.querySelector(".btn");
+
+    if (btn) {
+        btn.addEventListener("mouseover", () => {
+            btn.style.transform = "scale(1.1)";
+            btn.style.boxShadow = "0 0 25px gold";
+        });
+
+        btn.addEventListener("mouseout", () => {
+            btn.style.transform = "scale(1)";
+            btn.style.boxShadow = "0 0 15px rgba(255,215,0,0.4)";
+        });
+    }
+
+
+    /* =========================
+       🎵 OPTIONAL MUSIC
+       (uncomment to use)
+    ========================== */
+
+    /*
+    const music = new Audio("music.mp3");
+    music.loop = true;
+    music.volume = 0.5;
+
+    document.body.addEventListener("click", () => {
+        music.play();
+    }, { once: true });
+    */
+
+});
